@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import AuthenticateUserService from '../services/AuthenticateUserService';
+import AppError from '../errors/AppError';
 
 const sessionsRouter = Router();
 
@@ -12,24 +13,20 @@ interface UserJson {
 }
 
 sessionsRouter.post('/', async (req, res) => {
-    try {
-        const { email, password } = req.body;
+    const { email, password } = req.body;
 
-        const authenticateUserService = new AuthenticateUserService();
+    const authenticateUserService = new AuthenticateUserService();
 
-        const { user, token } = await authenticateUserService.execute({
-            email, 
-            password
-        });
+    const { user, token } = await authenticateUserService.execute({
+        email, 
+        password
+    });
 
-        const userWithoutPassword = user as UserJson;
+    const userWithoutPassword = user as UserJson;
 
-        delete userWithoutPassword.password;
+    delete userWithoutPassword.password;
 
-        return res.json({ userWithoutPassword, token });
-    } catch(err) {
-        return res.status(400).json({ error: (err as Error).message });
-    }
+    return res.json({ userWithoutPassword, token });
 });
 
 export default sessionsRouter;

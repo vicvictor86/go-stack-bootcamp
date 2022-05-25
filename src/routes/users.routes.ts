@@ -19,38 +19,30 @@ interface UserJson {
 }
 
 usersRouter.post('/', async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-        const createUser = new CreateUserService();
+    const createUser = new CreateUserService();
 
-        const user: UserJson = await createUser.execute({
-            name,
-            email,
-            password,
-        });
+    const user: UserJson = await createUser.execute({
+        name,
+        email,
+        password,
+    });
 
-        delete user.password;
+    delete user.password;
 
-        return res.json(user);
-    } catch(err) {
-        return res.status(400).json({ error: (err as Error).message });
-    }
+    return res.json(user);
 });
 
 usersRouter.patch('/avatar', ensureAutheticated, upload.single('avatar'), async(req, res) => {
-    try{
-        const updateUserAvatar = new UpdateUserAvatarService();
-        
-        const user = await updateUserAvatar.execute({
-            user_id: req.user.id,
-            avatarFileName: req.file?.filename,
-        });
+    const updateUserAvatar = new UpdateUserAvatarService();
+    
+    const user = await updateUserAvatar.execute({
+        user_id: req.user.id,
+        avatarFileName: req.file?.filename,
+    });
 
-        return res.json(user);
-    } catch (err) {
-        return res.status(400).json({ error: (err as Error).message });
-    }
+    return res.json(user);
 })
 
 export default usersRouter;
