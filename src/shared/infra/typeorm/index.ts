@@ -8,11 +8,11 @@ const connectionSource = new DataSource({
     password: "docker",
     database: "gostack_gobarber",
     entities: [
-        "./src/models/*.ts" 
+        "./src/modules/**/infra/typeorm/entities/*.ts" 
     ],
     migrations: [
-        "./src/database/migrations/*.ts"    
-    ]
+        "./src/shared/infra/typeorm/migrations/*.ts"    
+    ],
 });
 
 connectionSource.initialize();
