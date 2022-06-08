@@ -1,14 +1,7 @@
 import { Request, Response } from "express";
 import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 import { container } from 'tsyringe';
-
-interface UserJson {
-    name: string;
-    email: string;
-    password?: string;
-    created_at: Date;
-    updated_at: Date;
-}
+import UserJson from "@modules/users/dtos/IUserJsonDTO";
 
 export default class SessionsController {
     public async create(request: Request, response: Response): Promise<Response> {

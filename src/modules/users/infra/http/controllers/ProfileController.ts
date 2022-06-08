@@ -1,15 +1,8 @@
+import UserJson from "@modules/users/dtos/IUserJsonDTO";
 import ShowProfileService from "@modules/users/services/ShowProfileService";
 import UpdateProfileService from "@modules/users/services/UpdateProfileService";
 import { Request, Response } from "express";
 import { container } from 'tsyringe';
-
-interface UserJson {
-    name: string;
-    email: string;
-    password?: string;
-    created_at: Date;
-    updated_at: Date;
-}
 
 export default class ProfileController {
     public async show(request: Request, response: Response): Promise<Response> {
