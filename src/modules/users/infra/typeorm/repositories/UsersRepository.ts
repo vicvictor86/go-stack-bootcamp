@@ -1,5 +1,5 @@
 import User from '../entities/User';
-import connectionSource from '@shared/infra/typeorm/index';
+import { connectionSource } from '@shared/infra/typeorm/index';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';

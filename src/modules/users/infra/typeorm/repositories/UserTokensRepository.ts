@@ -1,5 +1,5 @@
 import UserToken from '../entities/UserToken';
-import connectionSource from '@shared/infra/typeorm/index';
+import { connectionSource } from '@shared/infra/typeorm/index';
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 

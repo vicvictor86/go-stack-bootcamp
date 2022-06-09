@@ -15,6 +15,18 @@ const connectionSource = new DataSource({
     ],
 });
 
-connectionSource.initialize();
+const connectionSourceMongo = new DataSource({
+    name: "mongo",
+    type: "mongodb",
+    host: "localhost",
+    port: 27017,
+    database: "gobarberr",
+    entities: [
+        "./src/modules/**/infra/typeorm/schemas/*.ts" 
+    ],
+});
 
-export default connectionSource;
+connectionSource.initialize();
+connectionSourceMongo.initialize();
+
+export {connectionSource, connectionSourceMongo};

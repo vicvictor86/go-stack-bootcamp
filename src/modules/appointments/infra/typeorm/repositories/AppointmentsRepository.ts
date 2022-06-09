@@ -1,5 +1,5 @@
 import Appointment from '../entities/Appointment';
-import connectionSource from '@shared/infra/typeorm/index';
+import { connectionSource } from '@shared/infra/typeorm/index';
 
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
