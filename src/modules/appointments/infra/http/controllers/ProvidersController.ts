@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { container } from 'tsyringe';
 
 import ListProvidersServices from '@modules/appointments/services/ListProvidersServices';
-import UserJson from "@modules/users/dtos/IUserJsonDTO";
 
 export default class ProvidersController {
     public async index(request: Request, response: Response): Promise<Response> {
