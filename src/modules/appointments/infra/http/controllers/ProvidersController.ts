@@ -10,13 +10,9 @@ export default class ProvidersController {
 
         const listProviders = container.resolve(ListProvidersServices);
 
-        const providers: UserJson[] = await listProviders.execute({ 
+        const providers = await listProviders.execute({ 
             user_id 
         });
-
-        providers.forEach(provider => {
-            delete provider.password;
-        })
 
         return response.json(providers);
     }

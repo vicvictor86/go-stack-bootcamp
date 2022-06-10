@@ -1,5 +1,6 @@
 import User from "@modules/users/infra/typeorm/entities/User";
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { instanceToInstance } from "class-transformer";
 import { inject, injectable } from 'tsyringe';
 
 interface Request {
@@ -18,7 +19,7 @@ class ListProvidersServices {
             except_user_id: user_id,
         });
 
-        return users;
+        return instanceToInstance(users);
     }
 }
 

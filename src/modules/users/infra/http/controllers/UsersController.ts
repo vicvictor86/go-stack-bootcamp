@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
-import UserJson from "@modules/users/dtos/IUserJsonDTO";
-
+import { instanceToInstance } from "class-transformer";
 
 export default class UsersController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -10,14 +9,12 @@ export default class UsersController {
 
         const createUser = container.resolve(CreateUserService);
 
-        const user: UserJson = await createUser.execute({
+        const user = await createUser.execute({
             name,
             email,
             password,
         });
 
-        delete user.password;
-
-        return response.json(user);
+        return response.json(instanceToInstance(user));
     } 
 }
