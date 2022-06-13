@@ -9,7 +9,6 @@ const notificationRepository = connectionSourceMongo.getMongoRepository(Notifica
 
 export const NotificationsRepository: ICreateNotificationDTO = notificationRepository.extend({
     async create({ content, recipient_id }: INotificationtDTO): Promise<Notification> {
-        console.log(notificationRepository);
         const notification = notificationRepository.create({ content, recipient_id  });
 
         await notificationRepository.save(notification);

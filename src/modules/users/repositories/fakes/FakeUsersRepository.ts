@@ -9,17 +9,13 @@ export default class FakeUsersRepository implements IUsersRepository{
     private users: User[] = [];
 
     public async findAllProviders({ except_user_id }: IFindAllProvidersDTO): Promise<User[]> {
-        // let { users } = this;
+        let { users } = this;
 
-        // if(except_user_id) {
-        //     users = this.users.filter(user => user.id !== except_user_id);
-        // }
+        if(except_user_id) {
+            users = this.users.filter(user => user.id !== except_user_id);
+        }
 
-        // return users;
-
-        const findProviders = this.users.filter(user => user.id !== except_user_id);
-
-        return findProviders;
+        return users;
     }
 
     public async findById(id: string): Promise<User | null> {
